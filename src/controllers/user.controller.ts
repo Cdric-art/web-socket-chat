@@ -32,9 +32,6 @@ export class UserController {
         return { user }
     }
 
-    static getUsersInRoom({ room }: {room: string}) {
-        return users.filter(user => user.room === room)
-    }
 }
 
 

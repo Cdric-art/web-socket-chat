@@ -12,7 +12,7 @@ export default function App() {
     const [room, setRoom] = useState('')
 
     return (
-        <div>
+        <div className="App">
             <Router>
                 <Switch>
                     <Route exact path='/'>

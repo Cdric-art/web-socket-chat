@@ -20,9 +20,9 @@ io.on("connection", (socket: Socket) => {
             return cb(error)
         }
         if (user) {
-            socket.emit('message', { user: 'admin', text: `${user.name}, welcome to the room ${user.room}`})
-            socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name}, has joined !`})
             socket.join(user.room)
+            socket.emit('message', { user: 'Admin', text: `${user.name}, welcome to the room ${user.room}`})
+            socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name}, has joined !`})
 
             cb(`${user.name} has joined !`)
         }
@@ -34,6 +34,15 @@ io.on("connection", (socket: Socket) => {
             io.to(user.room).emit('message', { user: user.name, text: message})
 
             cb('Message send !')
+        }
+    })
+
+    socket.on('logout', ({name}, cb) => {
+        const user = UserController.removeUser({id: name})
+        console.log(`Disconnect : ${user}`)
+        if(user) {
+            socket.broadcast.to(user.room).emit('message', { user: 'Admin', text: `${user.name} has left.` });
+            cb(`Disconnect : ${user}`)
         }
     })
 

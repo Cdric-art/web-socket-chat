@@ -8,11 +8,18 @@ interface Props {
 
 export function Home({ name, room }: Props): JSX.Element {
     return (
-        <div className="App">
-            <div className="container-login">
-                <input type="text" name="user" onChange={(e) => name(e.target.value)}/>
-                <input type="text" name="room" onChange={(e) => room(e.target.value)}/>
-                <Link to='/chat'>Sign In</Link>
+        <div className="joinOuterContainer">
+            <div className="joinInnerContainer">
+                <h1 className="heading">Join room</h1>
+                <div>
+                    <input className="joinInput" type="text" name="user" onChange={(e) => name(e.target.value)}/>
+                </div>
+                <div>
+                    <input className="joinInput" type="text" name="room" onChange={(e) => room(e.target.value)}/>
+                </div>
+                <Link to='/chat'>
+                    <button className="btn">Sign In</button>
+                </Link>
             </div>
         </div>
     );

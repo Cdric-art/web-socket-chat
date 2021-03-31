@@ -1,5 +1,8 @@
 import React, {useCallback, useEffect, useState} from 'react';
 import {io, Socket} from "socket.io-client";
+import {InfoBar} from "./InfoBar";
+import {Messages} from "./Messages";
+import {Input} from "./Input";
 
 interface Props {
     name: React.ComponentState,
@@ -23,7 +26,7 @@ export function Chat({name, room}: Props): JSX.Element {
         })
 
         socket.on('message', (response) => {
-            setMessages([...messages, response])
+            setMessages(messages => [...messages, response])
         })
 
         return () => {
@@ -46,15 +49,20 @@ export function Chat({name, room}: Props): JSX.Element {
         }
     }
 
+    const disconnect = () => {
+        socket.emit('logout', {name}, (res: Socket) => {
+            console.log({res})
+            document.location.href = "/"
+        })
+    }
+
     return (
-        <div className="App">
-            <div className="container-chat">
-                <input
-                    type="text"
-                    value={message}
-                    onChange={e => setMessage(e.target.value)}
-                    onKeyPress={e => e.key === 'Enter' ? sendMessage(e) : null}
-                />
+        <div className="outerContainer">
+            <div className="container">
+                <InfoBar room={room} logOut={disconnect}/>
+                <Messages messages={messages} name={name} />
+                {/*// @ts-ignore*/}
+                <Input message={message} sendMessage={sendMessage} setMessage={setMessage}/>
             </div>
         </div>
     );
