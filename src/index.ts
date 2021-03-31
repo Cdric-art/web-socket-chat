@@ -14,9 +14,27 @@ const io = new Server(httpServer, {
 io.on("connection", (socket: Socket) => {
     console.log('Socket.io is connecting, id : ', socket.id)
 
-    socket.on("addUser", (payload, cb) => {
-        const user = UserController.addUser(payload)
-        cb(`New user : ${JSON.stringify(user)}`)
+    socket.on("join", (payload, cb) => {
+        const {user, error} = UserController.addUser(payload)
+        if (error) {
+            return cb(error)
+        }
+        if (user) {
+            socket.emit('message', { user: 'admin', text: `${user.name}, welcome to the room ${user.room}`})
+            socket.broadcast.to(user.room).emit('message', { user: 'admin', text: `${user.name}, has joined !`})
+            socket.join(user.room)
+
+            cb(`${user.name} has joined !`)
+        }
+    })
+
+    socket.on('sendMessage', ({name, message}, cb) => {
+        const { user } = UserController.getUser({id : name})
+        if (user) {
+            io.to(user.room).emit('message', { user: user.name, text: message})
+
+            cb('Message send !')
+        }
     })
 
     socket.on("disconnecting", () => {

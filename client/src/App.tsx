@@ -8,7 +8,7 @@ import './App.css'
 
 export default function App() {
 
-    const [user, setUser] = useState('')
+    const [name, setName] = useState('')
     const [room, setRoom] = useState('')
 
     return (
@@ -16,10 +16,10 @@ export default function App() {
             <Router>
                 <Switch>
                     <Route exact path='/'>
-                        <Home user={setUser} room={setRoom}/>
+                        <Home name={setName} room={setRoom}/>
                     </Route>
                     <Route exact path='/chat'>
-                        <Chat user={user} room={room}/>
+                        <Chat name={name} room={room}/>
                     </Route>
                 </Switch>
             </Router>
