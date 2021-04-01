@@ -1,40 +1,59 @@
+.App {
+	background: url("./images/bg.jpg") no-repeat;
+	background-size: cover;
+}
+
 .joinOuterContainer {
 	display: flex;
 	justify-content: center;
 	text-align: center;
 	height: 100vh;
 	align-items: center;
-	background-color: #1A1A1D;
 }
 
 .joinInnerContainer {
-	width: 20%;
+	width: 25%;
+	padding: 3%;
+	border: 2px solid white;
+	border-radius: 8px;
+	background-color: rgba(0, 0, 0, .7);
+	box-shadow: 0 0 10px 3px rgba(255,255,255,0.75);
 }
 
 .joinInput {
-	padding: 15px 20px;
+	font-weight: bold;
+	color: white;
 	width: 100%;
+	background-color: rgba(255, 255, 255, .3);
+	padding: 15px 20px;
 	margin: 10px 0;
 	border-radius: 8px;
+	border: none;
+	transition: all .3s;
+}
+
+.joinInput:focus {
+	box-shadow: 0 0 1px 1px rgba(255,255,255,0.75);
 }
 
 .heading {
 	color: white;
 	font-size: 2.5em;
 	padding-bottom: 10px;
-	border-bottom: 2px solid white;
+	border-bottom: 2px solid #FD3800;
 }
 
 .btn {
-	color: #fff !important;
+	color: #FD3800;
+	font-weight: bold;
 	text-transform: uppercase;
 	text-decoration: none;
-	background: #2979FF;
-	padding: 20px;
-	border-radius: 8px;
+	border: 1px solid #FD3800;
+	background-color: #fc8c6d;
+	padding: 10px 20px;
+	margin-top: 12px;
+	border-radius: 3px;
 	display: inline-block;
-	border: none;
-	width: 100%;
 }
 
 .outerContainer {
@@ -42,15 +61,15 @@
 	justify-content: center;
 	align-items: center;
 	height: 100vh;
-	background-color: #1A1A1D;
 }
 
 .container {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	background: #FFFFFF;
 	border-radius: 8px;
+	background-color: rgba(0, 0, 0, .9);
+	box-shadow: 0 0 10px 1px rgba(255,255,255,0.75);
 	height: 60%;
 	width: 35%;
 }
@@ -59,8 +78,8 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	background: #2979FF;
-	border-radius: 4px 4px 0 0;
+	background: #ff5e57;
+	border-radius: 8px 8px 0 0;
 	height: 60px;
 	width: 100%;
 }
@@ -99,7 +118,7 @@
 
 .messageBox {
 	background: #F3F3F3;
-	border-radius: 15px;
+	border-radius: 3px;
 	padding: 4px 10px 6px 10px;
 	line-height: 1.1;
 	color: white;
@@ -107,7 +126,6 @@
 }
 
 .messageText {
-	font-weight: 600;
 	font-size: .9rem;
 	word-wrap: break-word;
 }
@@ -149,27 +167,31 @@
 }
 
 .colorDark {
-	color: #353535;
+	color: white;
 }
 
 .backgroundBlue {
-	background: #2979FF;
+	background: #ff5e57;
 }
 
 .backgroundLight {
-	background: #F3F3F3;
+	background: #58B19F;
 }
 
 .form {
 	display: flex;
-	border-top: 2px solid #D3D3D3;
+	border-top: 2px solid #ff5e57;
 }
 
 .input {
 	border: none;
-	padding: 4%;
+	padding: 3%;
 	width: 80%;
 	font-size: 1rem;
+	font-weight: bold;
+	color: white;
+	background-color: rgba(255, 255, 255, .1);
+	transition: all .3s;
 }
 
 input:focus, textarea:focus, select:focus{
@@ -180,41 +202,8 @@ input:focus, textarea:focus, select:focus{
 	color: #fff;
 	text-transform: uppercase;
 	text-decoration: none;
-	background: #2979FF;
+	background: #ff5e57;
 	border: none;
 	width: 20%;
 }
 
-.textContainer {
-	display: flex;
-	flex-direction: column;
-	margin-left: 100px;
-	color: white;
-	height: 60%;
-	justify-content: space-between;
-}
-
-.activeContainer {
-	display: flex;
-	align-items: center;
-	margin-bottom: 50%;
-}
-
-.activeItem {
-	display: flex;
-	align-items: center;
-}
-
-.activeContainer img {
-	padding-left: 10px;
-}
-
-.textContainer h1 {
-	margin-bottom: 0px;
-}
-
-@media (min-width: 320px) and (max-width: 1200px) {
-	.textContainer {
-		display: none;
-	}
-}
